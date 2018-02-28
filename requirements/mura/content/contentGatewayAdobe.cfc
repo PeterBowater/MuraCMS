@@ -1921,6 +1921,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 					and
 							(#renderTextParamColumn('tcontent.Title')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 							or #renderTextParamColumn('tcontent.menuTitle')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
+							
+							<!---
 							or #renderTextParamColumn('tcontent.metaKeywords')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 							or #renderTextParamColumn('tcontent.summary')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 							or (
@@ -1928,7 +1930,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 									and #renderTextParamColumn('tcontent.body')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 								)
 							or #renderTextParamColumn('tcontent.credits')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
-
+							--->
+							
 							or tcontent.contenthistid in (
 								select distinct tcontent.contenthistid from tclassextenddata
 								inner join tcontent on (tclassextenddata.baseid=tcontent.contenthistid)
@@ -2037,6 +2040,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 							(#renderTextParamColumn('tcontent.Title')# like  <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 
 							or #renderTextParamColumn('tcontent.menuTitle')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
+							
+							<!---
 							or #renderTextParamColumn('tcontent.metaKeywords')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 							or #renderTextParamColumn('tcontent.summary')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 							or
@@ -2045,7 +2050,8 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 									and #renderTextParamColumn('tcontent.body')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
 								)
 							or #renderTextParamColumn('tcontent.credits')# like <cfqueryparam cfsqltype="cf_sql_varchar" value="%#renderTextParamValue(arguments.keywords)#%">
-
+							--->
+							
 							or tcontent.contenthistid in (
 								select distinct tcontent.contenthistid from tclassextenddata
 								inner join tcontent on (tclassextenddata.baseid=tcontent.contenthistid)
@@ -2072,7 +2078,7 @@ version 2 without this exception.  You may, if you choose, apply this exception 
 
 				#renderMobileClause()#
 
-	ORDER BY supersort, priority, <cfif variables.configBean.getDBType() neq 'nuodb'>sortdate<cfelse>releasedate</cfif> desc, title
+	ORDER BY supersort, priority, <cfif variables.configBean.getDBType() neq 'nuodb'>sortdate<cfelse>releasedate</cfif> asc, title
 	</cfquery>
 
 	<cfreturn rsPublicSearch />
